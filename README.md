@@ -4,8 +4,7 @@
 * * *
 
 ## Mission-1
-link : 
-<br>
+
 
 ## Mission-2
-link :
+:point_right: [Poster UI 만들기](https://github.com/gayoung000/js-homework/tree/main/mission02/poster)
