@@ -47,10 +47,11 @@ function isString(data){
 
 // ========= 이미지 set 함수 ======== //
 
-function setImage(node, {src, alt}){
+function setImage(node, mainImgData){
   if (isString(node)) node = document.querySelector(node);
   
   // node의 이미지 변경
+  const {src, alt} = mainImgData;
   node.src = src;
   node.alt = alt; 
 }
@@ -68,10 +69,11 @@ function setNameText(node, name){
 
 // ========= 배경 색상 set 함수 ======== //
 
-function setBgColor(node, colorA, colorB='#000'){
+function setBgColor(node, backgroundColor){
   if (isString(node)) node = document.querySelector(node);
 
   // node의 색상 변경
+  const {colorA, colorB='#000'} = backgroundColor;
   node.style.background = `linear-gradient(to bottom, ${colorA},${colorB})`;
 }
 
@@ -96,6 +98,7 @@ function setAudio(src) {
 // =============================================== //
 //                  이벤트 헨들링 함수                  //
 // =============================================== //
+
 function handleNavClick (e){
 
   // target 
@@ -113,14 +116,14 @@ function handleNavClick (e){
   // 위의 index에 해당하는 data의 name 속성 가져오기
   const dataName = data[index-1].name; 
 
-  // is-active 속성 넣고 빼기 
+  // 해당 li에만 is-active 속성 넣기 (그 전에 다 remove하고 해당 li에만 add)
   const children = ul.children;
-  for (let targetLi of children) {
-    targetLi.classList.remove("is-active");
+  for (let li of children) {
+    li.classList.remove("is-active");
   }
   li.classList.add("is-active");
   
-  // 렌더링 함수에서 필요할 변수
+  // 렌더링 함수에서 필요할 변수 설정
   const mainImgData = {
     src : `./assets/${dataName}.jpeg`,
     alt :  data[index-1].alt
